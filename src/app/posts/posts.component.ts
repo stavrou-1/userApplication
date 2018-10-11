@@ -12,7 +12,7 @@ export class PostComponent implements OnInit {
   posts: Object;
 
   constructor(private data: DataService) {
-
+    // this function is initiated immeditely.
   }
 
   // like component will mount :)
