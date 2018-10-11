@@ -6,20 +6,18 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+    styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
 
-  userDetails$: Object;
+  apiDetailsObject: Object;
 
   constructor(private data: DataService, private route: ActivatedRoute) {
-    this.route.params.subscribe(params => this.userDetails$ = params.id);
+    this.route.params.subscribe(params => this.apiDetailsObject = params.id);
   }
 
   ngOnInit() {
-    this.data.getUser(this.userDetails$).subscribe(
-      data => this.userDetails$ = data;
-    )
+    this.data.getUser(this.apiDetailsObject)
+    .subscribe(data => this.apiDetailsObject = data);
   }
-
 }

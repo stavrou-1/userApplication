@@ -18,8 +18,8 @@ export class UsersComponent implements OnInit {
   // like component will mount :)
   ngOnInit() {
     this.data.getUsers().subscribe(
-      data => this.users$ = data;
-    )
+      data => this.users$ = data
+    );
   }
 
 }

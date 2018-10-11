@@ -18,8 +18,8 @@ export class PostComponent implements OnInit {
   // like component will mount :)
   ngOnInit() {
     this.data.getPosts().subscribe(
-      data => this.posts = data;
-    )
+      data => this.posts = data
+    );
   }
 
 }
