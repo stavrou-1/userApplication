@@ -1,0 +1,19 @@
+<div>
+  <h1>{{ sportsDetails.team }}  <button class="btnB">Create a new team?</button></h1>
+</div>
+
+<ul>
+      <li>{{ sportsDetails._id }}</li>
+      <li>{{ sportsDetails.city }}</li>
+      <li>{{ sportsDetails.arena }}</li>
+</ul>
+
+<h2 (click)="registerHandler(this)">Players</h2>
+
+<ul>
+  <li *ngFor="let players of sportsDetails.players">
+    <span>{{ players.name }}</span>
+    <span class="right teamPos">&nbsp; {{ players.position }}</span>
+    <span class="right teamNum"><strong>{{ players.teamNum }}</strong></span>
+  </li>
+</ul>

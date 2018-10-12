@@ -1,0 +1,34 @@
+.right {
+  float: right;
+}
+.teamNum {
+  width:2.5em;
+  height:2.5em;
+  border-radius:3em;
+  font-size:0.7em;
+  color:#fff;
+  text-align:center;
+  background:#000;
+  strong {
+    position: relative;
+    top: 0.6em;
+  }
+}
+
+button.btnB {
+    background: #449663;
+    padding: 1em;
+    color: white;
+    border: 0;
+    cursor: pointer;
+}
+button.btnB:hover {
+    opacity: 0.9;
+    transition: 0.2s;
+}
+
+@media screen and (min-width: 736px) {
+  button.btnB {
+    margin: 0 2em;
+  }
+}

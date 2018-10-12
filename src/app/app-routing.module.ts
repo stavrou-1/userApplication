@@ -4,6 +4,8 @@ import { UsersComponent } from './users/users.component';
 import { DetailsComponent } from './details/details.component';
 import { PostComponent } from './posts/posts.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { SportsComponent } from './sports/sports.component';
+import { SportsDetailsComponent } from './sports-details/sports-details.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'post/:id',
     component: PostDetailsComponent
+  },
+  {
+    path: 'sports',
+    component: SportsComponent
+  },
+  {
+    path: 'sports/:id',
+    component: SportsDetailsComponent
   }
 ];
 
@@ -28,4 +38,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}

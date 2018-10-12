@@ -12,6 +12,8 @@ import { UsersComponent } from './users/users.component';
 import { DetailsComponent } from './details/details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { SportsComponent } from './sports/sports.component';
+import { SportsDetailsComponent } from './sports-details/sports-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     PostComponent,
     UsersComponent,
     DetailsComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    SportsComponent,
+    SportsDetailsComponent
   ],
   imports: [
     BrowserModule,

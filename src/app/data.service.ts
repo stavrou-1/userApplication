@@ -9,6 +9,14 @@ export class DataService {
   constructor(private http: HttpClient) {
   }
 
+  getSports() {
+    return this.http.get('https://todolistapi2.herokuapp.com/sports');
+  }
+
+  getSportsDetails(sportsId) {
+    return this.http.get('https://todolistapi2.herokuapp.com/sports/' + sportsId);
+  }
+
   getUsers() {
     const e: string = 'https://jsonplaceholder.typicode.com/users';
     return this.http.get(e);
