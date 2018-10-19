@@ -2,17 +2,11 @@
   float: right;
 }
 .teamNum {
-  width:2.5em;
-  height:2.5em;
-  border-radius:3em;
-  font-size:0.7em;
-  color:#fff;
-  text-align:center;
-  background:#000;
-  strong {
-    position: relative;
-    top: 0.6em;
-  }
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+  font-size: 1.3em;
+  display: inline-block;
 }
 
 button.btnB {
@@ -25,6 +19,18 @@ button.btnB {
 button.btnB:hover {
     opacity: 0.9;
     transition: 0.2s;
+}
+.editBtn {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.editPlayer {
+  background: #FFF;
+  padding: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0;
 }
 
 @media screen and (min-width: 736px) {

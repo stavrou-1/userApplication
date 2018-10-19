@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -12,6 +12,7 @@ export class SportsDetailsComponent implements OnInit {
 
   sportsDetails: Object;
   statisticsHeader: 'Statistics';
+  editing: Boolean;
 
   constructor(public data: DataService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => this.sportsDetails = params.id);
@@ -19,12 +20,15 @@ export class SportsDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.data.getSportsDetails(this.sportsDetails)
-    .subscribe(data => this.sportsDetails = data)
-    this.getPlayers();
+      .subscribe(data => this.sportsDetails = data);
   }
 
-  getPlayers() {
-    console.log('something', this.sportsDetails);
+  get playersLength() {
+    if (this.sportsDetails) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   registerHandler(event) {

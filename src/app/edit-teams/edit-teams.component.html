@@ -1,0 +1,114 @@
+ <form [formGroup]="teamForm" (ngSubmit)="updateTeam()">
+  <div formArrayName="playersDetailsForm">
+    <div *ngFor="let player of teamForm.controls.playersDetailsForm.controls; let i = index">
+      <div [formGroupName]="i">
+        <input type="hidden" formControlName="_id" />
+
+        <h2>General Team Info:</h2>
+        <ul>
+          <li class="inputQuestion">
+            <label for="team">Team:</label>
+            <input type="text" formControlName="team" />
+          </li>
+
+          <li class="inputQuestion">
+            <label for="city">City:</label>
+            <input type="text" formControlName="city" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.city.valid" class="inlineError">
+              Required City
+            </div>
+          </li>
+
+          <li class="inputQuestion">
+            <label for="stateAbbr">State abbreviation:</label>
+            <input type="text" formControlName="stateAbbr" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.stateAbbr.valid" class="inlineError">
+              Required state abbreviation
+            </div>
+          </li>
+          
+          <li class="inputQuestion">
+            <label for="history">History:</label>
+            <input type="text" formControlName="history" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.history.valid" class="inlineError">
+              Required History
+            </div>
+          </li>
+
+          <li class="inputQuestion">
+              <label for="state">Team Status:</label>
+              <input type="text" formControlName="state" />
+              <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.state.valid" class="inlineError">
+                Required Team Status
+              </div>
+            </li>
+
+          <li class="inputQuestion">
+            <label for="arena">Arena:</label>
+            <input type="text" formControlName="arena" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.arena.valid" class="inlineError">
+              Required Arena
+            </div>
+          </li>
+
+          <h2>Players:</h2>
+                    
+          <!--<div formArrayName="players">
+              <div *ngFor="let play of teamForm.controls.players.controls; let x = index">
+                <div [formGroupName]="x">
+                    <ul>
+                      <li class="inputQuestion">
+                        <label for="team">Team:</label>
+                        <input type="text" formControlName="name" />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>-->
+
+          <li>
+            <button type="submit" [disabled]="!teamForm.valid" class="editTeamsBtn">Submit Changes</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div formArrayName="players">
+
+
+    </div>
+    <div *ngFor="let pppp of teamForm.controls.playersDetailsForm.controls; let i = index">
+      
+    </div>
+  </div><!-- end playersDetailsForm array -->
+
+  <!-- Players Array Test -->
+  <!--<div formArrayName="playersDetailsForm">
+    <div *ngFor="let player of teamForm.controls.playersDetailsForm.controls
+                 let x = index;">
+        <div [formGroupName]="x">
+          <li class="inputQuestion">
+            <label for="name">Team arena:</label>
+            <input type="text" formControlName="name" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls.players.controls[x].controls.players.valid" class="inlineError">
+              Required Team Status
+            </div>
+          </li>
+        </div>
+    </div>
+  </div>-->
+</form>

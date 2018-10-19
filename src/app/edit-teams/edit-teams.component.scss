@@ -1,0 +1,16 @@
+.editTeamsBtn {
+    background-color: cornflowerblue;
+    display: inline-block;
+    border: 0;
+    color: #FFF;
+    cursor: pointer;
+    span {
+        float: left;
+        padding: 1em;
+        text-transform: uppercase;
+    }
+    i {
+        float: left;
+        padding: 0.2em;
+    }
+}

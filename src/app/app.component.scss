@@ -1,0 +1,21 @@
+.addTeam {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.addTeam a {
+    background-color: #FFF;
+    color: gray;
+    margin: 1em;
+    display: block;
+    height: 2em;
+    width: 2em;
+    padding: 1.3em;
+    /* width: 4em; */
+    border-radius: 50%;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    i {
+      font-size: 2em;
+    }
+}

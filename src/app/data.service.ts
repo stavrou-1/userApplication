@@ -1,39 +1,54 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { PostTeam } from './PostTeam';
+import { TeamDetails } from './TeamDetails';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  HTTP_OPTIONS = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application-json'
+    })
+  }
+
+  readonly ROOT_URL = 'https://todolistapi2.herokuapp.com';
+  readonly PLACEHOLDER_URL = 'https://jsonplaceholder.typicode.com';
+
   constructor(private http: HttpClient) {
   }
 
-  getSports() {
-    return this.http.get('https://todolistapi2.herokuapp.com/sports');
+  getSports = () => {
+    return this.http.get<TeamDetails>(this.ROOT_URL + '/sports');
   }
 
-  getSportsDetails(sportsId) {
-    return this.http.get('https://todolistapi2.herokuapp.com/sports/' + sportsId);
+  createSportsPost = (jsonObject: Object) => {
+    return this.http.post<PostTeam>(this.ROOT_URL + '/sports', jsonObject);
   }
 
-  getUsers() {
-    const e: string = 'https://jsonplaceholder.typicode.com/users';
-    return this.http.get(e);
+  updateSportsPost = (jsonObject: Object, playerId) => {
+    return this.http.put(this.ROOT_URL + '/sports' + playerId, jsonObject);
   }
 
-  getUser(userId) {
-    const f: string = 'https://jsonplaceholder.typicode.com/users/' + userId;
-    return this.http.get(f);
+  getSportsDetails = (sportsId) => {
+    return this.http.get<TeamDetails>(this.ROOT_URL + '/sports/' + sportsId);
   }
 
-  getPosts() {
-    const a: string = 'https://jsonplaceholder.typicode.com/posts';
-    return this.http.get(a);
+  getUsers = () => {
+    return this.http.get(this.PLACEHOLDER_URL + '/users');
   }
 
-  getPost(postId) {
-    const p: string = 'https://jsonplaceholder.typicode.com/posts/' + postId;
-    return this.http.get(p);
+  getUser = (userId) => {
+    return this.http.get(this.PLACEHOLDER_URL + '/users/' + userId);
+  }
+
+  getPosts = () => {
+    return this.http.get(this.PLACEHOLDER_URL + '/posts');
+  }
+
+  getPost = (postId) => {
+    return this.http.get(this.PLACEHOLDER_URL + '/posts/' + postId);
   }
 }

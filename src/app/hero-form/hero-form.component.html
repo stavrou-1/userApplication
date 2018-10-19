@@ -1,0 +1,135 @@
+<div class="container" [hidden]="submitted">
+    <h1>{{pageTitle}}</h1>
+
+    {{diagnostic}}
+    <form #teamForm="ngForm" (ngSubmit)="onSubmit(teamForm)">
+      <div class="form-group">
+        <label for="team">Team</label>
+        <input type="text" class="form-control" id="team"
+               required
+               [(ngModel)]="model.team" name="team"
+               #team="ngModel"
+               minlength="2">
+
+         <div *ngIf="team.invalid && (team.dirty || team.touched)"
+             class="alert alert-danger">
+
+           <div *ngIf="team.errors.required">
+             Team is required.
+           </div>
+           <div *ngIf="team.errors.minlength">
+             Team must be at least 4 characters long.
+           </div>
+         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="history">History</label>
+        <input type="text" class="form-control" id="history"
+               required
+               [(ngModel)]="model.history" name="history"
+               #history="ngModel"
+               minlength="10" placeholder="A short description on the team's history.">
+
+         <div *ngIf="history.invalid && (history.dirty || history.touched)"
+             class="alert alert-danger">
+
+           <div *ngIf="history.errors.required">
+             History is required.
+           </div>
+           <div *ngIf="history.errors.minlength">
+             History must be at least 10 characters long.
+           </div>
+         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city"
+               required
+               [(ngModel)]="model.city" name="city"
+               #city="ngModel"
+               minlength="2" placeholder="Minnesota">
+
+         <div *ngIf="city.invalid && (city.dirty || city.touched)"
+             class="alert alert-danger">
+
+           <div *ngIf="city.errors.required">
+             City is required.
+           </div>
+           <div *ngIf="city.errors.minlength">
+             City must be at least 2 characters long.
+           </div>
+         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="stateAbbr">State Abbreviation</label>
+        <input type="text" class="form-control" id="stateAbbr"
+               required
+               [(ngModel)]="model.stateAbbr" name="stateAbbr"
+               #stateAbbr="ngModel"
+               minlength="2" placeholder="MN">
+
+         <div *ngIf="stateAbbr.invalid && (stateAbbr.dirty || stateAbbr.touched)"
+             class="alert alert-danger">
+
+           <div *ngIf="stateAbbr.errors.required">
+             StateAbbr is required.
+           </div>
+           <div *ngIf="stateAbbr.errors.minlength">
+             StateAbbr must be at least 2 characters long.
+           </div>
+         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="arena">Arena</label>
+        <input type="text" class="form-control" id="arena"
+               required
+               [(ngModel)]="model.arena" name="arena"
+               #arena="ngModel"
+               minlength="2" placeholder="Target Center">
+
+         <div *ngIf="arena.invalid && (arena.dirty || arena.touched)"
+             class="alert alert-danger">
+
+           <div *ngIf="arena.errors.required">
+             Arena is required.
+           </div>
+           <div *ngIf="arena.errors.minlength">
+             Arena must be at least 2 characters long.
+           </div>
+         </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!teamForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newTeam(); teamForm.reset()">Start Over</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h2>You submitted the following:</h2>
+  <div class="row">
+    <div class="col-xs-3">Team</div>
+    <div class="col-xs-9  pull-left">{{ model.team }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">History</div>
+    <div class="col-xs-9  pull-left">{{ model.history }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">City</div>
+    <div class="col-xs-9 pull-left">{{ model.city }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">StateAbbr</div>
+    <div class="col-xs-9 pull-left">{{ model.stateAbbr }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Arena</div>
+    <div class="col-xs-9 pull-left">{{ model.arena }}</div>
+  </div>
+  <br>
+  <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+</div>
