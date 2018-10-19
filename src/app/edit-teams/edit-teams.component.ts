@@ -58,21 +58,24 @@ export class EditTeamsComponent implements OnInit {
             __v: [0],
             city: [element.city, Validators.required],
             arena: [element.arena, Validators.required],
-            players: this.fb.array([])
+            players: this.setProjects(element)
           }));
-
-          let mutationArray: any = this.teamForm.controls.playersDetailsForm.value[0].players;
-
-          // iterate your object and pushes new values
-          element.players.forEach(result => {
-            mutationArray.push(result)
-          });
         });
-
-
       }, (error) => {
         this.error = error;
       });
+  }
+
+  setProjects(x) {
+    let arr = new FormArray([])
+    x.players.forEach(y => {
+      arr.push(this.fb.group({
+        name: y.name,
+        teamNum: y.teamNum,
+        position: y.position
+      }))
+    })
+    return arr;
   }
 
   updateTeam(): void {

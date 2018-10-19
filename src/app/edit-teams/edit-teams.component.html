@@ -1,6 +1,6 @@
  <form [formGroup]="teamForm" (ngSubmit)="updateTeam()">
   <div formArrayName="playersDetailsForm">
-    <div *ngFor="let player of teamForm.controls.playersDetailsForm.controls; let i = index">
+    <div *ngFor="let player of teamForm.get('playersDetailsForm').controls; let i = index">
       <div [formGroupName]="i">
         <input type="hidden" formControlName="_id" />
 
@@ -35,6 +35,8 @@
             </div>
           </li>
 
+          {{error}}
+
           <li class="inputQuestion">
               <label for="state">Team Status:</label>
               <input type="text" formControlName="state" />
@@ -52,19 +54,32 @@
           </li>
 
           <h2>Players:</h2>
-                    
-          <!--<div formArrayName="players">
-              <div *ngFor="let play of teamForm.controls.players.controls; let x = index">
-                <div [formGroupName]="x">
-                    <ul>
-                      <li class="inputQuestion">
-                        <label for="team">Team:</label>
-                        <input type="text" formControlName="name" />
-                      </li>
-                    </ul>
-                  </div>
+
+          <!-- Nested Players Array -->
+          <div formArrayName="players">
+              <div *ngFor="let project of player.get('players').controls; let j=index">
+                <h4>{{name}}</h4>
+                <div [formGroupName]="j">
+
+                  <li class="inputQuestion">
+                    <label for="name">Name:</label>
+                    <input formControlName="name" />
+                  </li>
+
+                  <li class="inputQuestion">
+                    <label for="teamNum">Team Number:</label>
+                    <input formControlName="teamNum" />
+                  </li>
+
+                  <li class="inputQuestion">
+                    <label for="position">Position:</label>
+                    <input formControlName="position" />
+                  </li>
+
                 </div>
-              </div>-->
+              </div>
+            </div>
+
 
           <li>
             <button type="submit" [disabled]="!teamForm.valid" class="editTeamsBtn">Submit Changes</button>
@@ -72,43 +87,6 @@
         </ul>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div formArrayName="players">
-
-
-    </div>
-    <div *ngFor="let pppp of teamForm.controls.playersDetailsForm.controls; let i = index">
-      
-    </div>
+    
   </div><!-- end playersDetailsForm array -->
-
-  <!-- Players Array Test -->
-  <!--<div formArrayName="playersDetailsForm">
-    <div *ngFor="let player of teamForm.controls.playersDetailsForm.controls
-                 let x = index;">
-        <div [formGroupName]="x">
-          <li class="inputQuestion">
-            <label for="name">Team arena:</label>
-            <input type="text" formControlName="name" />
-            <div [hidden]="teamForm.controls.playersDetailsForm.controls.players.controls[x].controls.players.valid" class="inlineError">
-              Required Team Status
-            </div>
-          </li>
-        </div>
-    </div>
-  </div>-->
 </form>
