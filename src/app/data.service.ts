@@ -14,7 +14,7 @@ export class DataService {
     })
   }
 
-  readonly ROOT_URL = 'https://todolistapi2.herokuapp.com';
+  readonly ROOT_URL = 'http://todolistapi2.herokuapp.com';
   readonly PLACEHOLDER_URL = 'https://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient) {
@@ -29,7 +29,11 @@ export class DataService {
   }
 
   updateSportsPost = (jsonObject: Object, playerId) => {
-    return this.http.put(this.ROOT_URL + '/sports' + playerId, jsonObject);
+    return this.http.put(this.ROOT_URL + '/sports/' + playerId, jsonObject);
+  }
+
+  deleteSport = (playerId) => {
+    return this.http.delete(this.ROOT_URL + '/sports/' + playerId);
   }
 
   getSportsDetails = (sportsId) => {

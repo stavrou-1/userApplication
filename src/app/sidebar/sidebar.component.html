@@ -1,18 +1,33 @@
 <nav>
   <ul>
     <li>
-      <a routerLink="">
+      <a routerLink="" routerLinkActive="active">
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
     <li>
-      <a routerLink="posts">
+      <a routerLink="posts" routerLinkActive="active">
         <i class="material-icons">message</i>
       </a>
     </li>
     <li>
-      <a routerLink="sports">
+      <a routerLink="sports" routerLinkActive="active">
         <i class="material-icons">list_alt</i>
+      </a>
+    </li>
+    <li *ngIf="!_authService.loggedIn()">
+      <a routerLink="login" routerLinkActive="active">
+        <i class="material-icons">lock</i>
+      </a>
+    </li>
+    <li *ngIf="!_authService.loggedIn()">
+      <a routerLink="register" routerLinkActive="active">
+        <i class="material-icons">person_add</i>
+      </a>
+    </li>
+    <li *ngIf="_authService.loggedIn()" (click)="_authService.logoutUser()">
+      <a routerLink="">
+        <i class="material-icons">lock_open</i>
       </a>
     </li>
   </ul>

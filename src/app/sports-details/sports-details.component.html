@@ -5,6 +5,9 @@
       <a class="editBtn" routerLink="/edit/{{ sportsDetails._id }}">
         <i class="material-icons">edit</i>
       </a>
+      <a class="editBtn" (click)="deleteTeam()">
+        <i class="material-icons">close</i>
+      </a>
       <button class="btnB" *ngIf="playersLength === 0">Add Players?</button>
     </h1>
   </div>

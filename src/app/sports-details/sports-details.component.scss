@@ -24,7 +24,22 @@ button.btnB:hover {
   background-color: transparent;
   border: 0;
   cursor: pointer;
+  i {
+    font-size: 0.8em;
+    padding: 0;
+    margin: 0;
+    background: #FFF;
+    border-radius: 50%;
+    padding: 0.2em;
+    margin-left: 0.5em;
+    color: gray;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  }
 }
+
 .editPlayer {
   background: #FFF;
   padding: 0.5em;

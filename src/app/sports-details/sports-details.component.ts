@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sports-details',
@@ -14,7 +14,9 @@ export class SportsDetailsComponent implements OnInit {
   statisticsHeader: 'Statistics';
   editing: Boolean;
 
-  constructor(public data: DataService, private route: ActivatedRoute) {
+  constructor(public data: DataService, 
+              private route: ActivatedRoute,
+              private _router: Router) {
     this.route.params.subscribe(params => this.sportsDetails = params.id);
   }
 
@@ -29,6 +31,21 @@ export class SportsDetailsComponent implements OnInit {
     } else {
       return 0;
     }
+  }
+
+  deleteTeam() {
+    this.route.params.subscribe(params => {
+      const theId = params.id;
+      console.log(theId);
+      this.data.deleteSport(theId)
+        .subscribe(res => {
+          console.log(res + ' was deleted!');
+          this._router.navigate(['/sports']);
+        },
+        err => {
+          console.log(err + ' occurred. Failed to delete object.');
+        });
+    })
   }
 
   registerHandler(event) {

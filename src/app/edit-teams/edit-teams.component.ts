@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm, FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { PostPlayers } from '../PostPlayers';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-teams',
@@ -23,7 +24,9 @@ export class EditTeamsComponent implements OnInit {
   inspectionform: FormGroup;
 
   constructor(public data: DataService, 
-    private route: ActivatedRoute, private fb: FormBuilder) {
+    private route: ActivatedRoute, 
+    private fb: FormBuilder,
+    private _router: Router) {
     this.route.params.subscribe(
       data => this.teamId = data.id,
       error => this.error = error);
@@ -39,16 +42,11 @@ export class EditTeamsComponent implements OnInit {
     this.data.getSportsDetails(this.teamId)
       .subscribe(data => {
         const container = [];
-        // This is our raw data object this.playersObject
         this.playersObject = data;
         container.push(this.playersObject);
-
         const items = this.teamForm.get('playersDetailsForm') as FormArray;
 
-        container.forEach(element => {
-
-          //console.log(JSON.stringify(element.players,null,2));
-          
+        container.forEach(element => {          
           (items).push(this.fb.group({
             _id: [element._id],
             team: [element.team, Validators.required],
@@ -68,20 +66,26 @@ export class EditTeamsComponent implements OnInit {
 
   setProjects(x) {
     let arr = new FormArray([])
-    x.players.forEach(y => {
-      arr.push(this.fb.group({
-        name: y.name,
-        teamNum: y.teamNum,
-        position: y.position
-      }))
-    })
-    return arr;
+    if (x.players) {
+      x.players.forEach(y => {
+        arr.push(this.fb.group({
+          name: y.name,
+          teamNum: y.teamNum,
+          position: y.position
+        }))
+      })
+      return arr;
+    }
+    return false;
   }
 
   updateTeam(): void {
-    // TODO Use EventEmitter form value
     console.warn(JSON.stringify(this.teamForm.value.playersDetailsForm[0],null,2));
+    const result = this.teamForm.value.playersDetailsForm[0];
+    this.data.updateSportsPost(result, result._id)
+      .subscribe(res => {
+         console.log('Sucesssful Update! ,' + res )
+         this._router.navigate(['/sports/' + result._id]);
+      });
   }
-
-
 }
