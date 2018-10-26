@@ -2,17 +2,21 @@
   <div>
     <h1>
       <span>{{ sportsDetails.team }}</span> 
-      <a class="editBtn" routerLink="/edit/{{ sportsDetails._id }}">
+      <a class="editBtn" routerLink="/edit/{{ sportsDetails._id }}" *ngIf="_authService.loggedIn()">
         <i class="material-icons">edit</i>
       </a>
-      <a class="editBtn" (click)="deleteTeam()">
+      <a class="editBtn" (click)="deleteTeam()" *ngIf="_authService.loggedIn()">
         <i class="material-icons">close</i>
       </a>
       <button class="btnB" *ngIf="playersLength === 0">Add Players?</button>
     </h1>
+    <div> I'm a {{color}} color </div>
   </div>
   <ul>
-    <li>{{ sportsDetails._id }}</li>
+    <li [appShadow]="'hotpink'"
+        [appShadowX]="'12px'"
+        [appShadowY]="'6px'"
+        [appShadowBlur]="'30px'">{{ sportsDetails._id }}</li>
     <li>{{ sportsDetails.city }}</li>
     <li>{{ sportsDetails.arena }}</li>
   </ul>

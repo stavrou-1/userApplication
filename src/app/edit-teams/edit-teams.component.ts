@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm, FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { PostPlayers } from '../PostPlayers';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,8 +33,7 @@ export class EditTeamsComponent implements OnInit {
   ngOnInit():any {
  
     this.teamForm = this.fb.group({
-      playersDetailsForm: this.fb.array([])/*,
-      players: this.fb.array([])*/
+      playersDetailsForm: this.fb.array([])
     });
 
     this.data.getSportsDetails(this.teamId)

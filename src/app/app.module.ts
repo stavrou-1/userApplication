@@ -29,7 +29,9 @@ import { AuthService } from './auth.service';
 import { EventService } from './event.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
-
+import { ShadowDirective } from './shadow.directive';
+import { SelectedColorDirective } from './selected-color.directive';
+import { ExponentialPipe } from './exponential.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,10 @@ import { TokenInterceptorService } from './token-interceptor.service';
     RegistereComponent,
     LoginComponent,
     EventsComponent,
-    SpecialEventsComponent
+    SpecialEventsComponent,
+    ShadowDirective,
+    SelectedColorDirective,
+    ExponentialPipe
   ],
   imports: [
     BrowserModule,

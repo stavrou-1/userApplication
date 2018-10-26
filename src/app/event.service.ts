@@ -6,8 +6,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EventService {
 
-  private _eventsUrl = 'http://localhost:4040/events';
-  private _specialEventsUrl = 'http://localhost:4040/special';
+  private _eventsUrl = 'https://todolistapi2.herokuapp.com/events';
+  private _specialEventsUrl = 'https://todolistapi2.herokuapp.com/special';
+  private _sportsEventsUrl = 'https://todolistapi2.herokuapp.com/sports'
 
   constructor(private http: HttpClient) { 
 
@@ -19,5 +20,9 @@ export class EventService {
 
   getSpecialEvents() {
     return this.http.get<any>(this._specialEventsUrl);
+  }
+
+  getSports() {
+    return this.http.get<any>(this._sportsEventsUrl);
   }
 }

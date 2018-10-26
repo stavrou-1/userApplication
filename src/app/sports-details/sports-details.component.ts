@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sports-details',
@@ -13,10 +14,12 @@ export class SportsDetailsComponent implements OnInit {
   sportsDetails: Object;
   statisticsHeader: 'Statistics';
   editing: Boolean;
+  color: 'green';
 
   constructor(public data: DataService, 
               private route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              private _authService: AuthService) {
     this.route.params.subscribe(params => this.sportsDetails = params.id);
   }
 
@@ -37,7 +40,16 @@ export class SportsDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       const theId = params.id;
       console.log(theId);
-      this.data.deleteSport(theId)
+      let doesProceed;
+      let confirmValue = prompt("Are you sure you want to deleted this entry? Type Yes to continue.");
+      if (!confirmValue) {
+        doesProceed = false;
+        return;
+      } else if (confirmValue === 'yes' || confirmValue === 'Yes') {
+        doesProceed = true;
+      }
+      if (doesProceed) {
+        this.data.deleteSport(theId)
         .subscribe(res => {
           console.log(res + ' was deleted!');
           this._router.navigate(['/sports']);
@@ -45,6 +57,7 @@ export class SportsDetailsComponent implements OnInit {
         err => {
           console.log(err + ' occurred. Failed to delete object.');
         });
+      }
     })
   }
 

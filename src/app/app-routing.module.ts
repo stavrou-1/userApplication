@@ -35,11 +35,13 @@ const routes: Routes = [
   },
   {
     path: 'sports',
-    component: SportsComponent
+    component: SportsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'sports/:id',
-    component: SportsDetailsComponent
+    component: SportsDetailsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'addsport',
@@ -54,7 +56,7 @@ const routes: Routes = [
     path: 'profileEdtior',
     component: ProfileEditorComponent
   },
-  // authentication routes
+  // authentication route
   {
     path: 'events',
     component: EventsComponent
