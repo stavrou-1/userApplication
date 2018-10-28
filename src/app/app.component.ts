@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +11,10 @@ export class AppComponent {
   courses: any[];
   title: string;
   greeting: string;
-  constructor(database: AngularFireDatabase) {
-    database.list('/courses').valueChanges()
-      .subscribe(data => {
-        this.courses = data;
-      })
-      this.title = 'some title';
-  }
+  constructor(private database: AngularFireDatabase,
+              private _AuthService: AuthService) { }
 
   OnInit() {
-    console.log('done')
+    
   }
 }

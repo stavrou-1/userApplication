@@ -32,6 +32,11 @@ import { TokenInterceptorService } from './token-interceptor.service';
 import { ShadowDirective } from './shadow.directive';
 import { SelectedColorDirective } from './selected-color.directive';
 import { ExponentialPipe } from './exponential.pipe';
+import { bypassSanitizationTrustStyle } from '@angular/core/src/sanitization/bypass';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
+
 
 @NgModule({
   declarations: [
@@ -59,6 +64,7 @@ import { ExponentialPipe } from './exponential.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    StoreModule.forRoot(reducers, {}),
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
@@ -80,6 +86,6 @@ import { ExponentialPipe } from './exponential.pipe';
 })
 export class AppModule {
   constructor() {
-
+    
   }
 }

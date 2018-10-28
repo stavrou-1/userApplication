@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { PostTeam } from './PostTeam';
 import { TeamDetails } from './TeamDetails';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class DataService {
   readonly ROOT_URL = 'http://todolistapi2.herokuapp.com';
   readonly PLACEHOLDER_URL = 'https://jsonplaceholder.typicode.com';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private store: Store<any>) {
   }
 
   getSports = () => {
@@ -54,5 +56,17 @@ export class DataService {
 
   getPost = (postId) => {
     return this.http.get(this.PLACEHOLDER_URL + '/posts/' + postId);
+  }
+
+  getTeamState() {
+    return this.store.select('teamReducer')
+  }
+
+  updateTeamState(reduxObj) {
+    console.log(reduxObj);
+    this.store.dispatch({
+      type: reduxObj.action,
+      payload: reduxObj.payload
+    });
   }
 }

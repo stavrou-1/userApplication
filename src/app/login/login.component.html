@@ -1,4 +1,4 @@
-<section class="loginOverlay">
+<div class="loginOverlay">
   <h1>Login</h1>
   <div class="container">
     <form #loginUserForm="ngForm">
@@ -17,4 +17,4 @@
       <button (click)="loginUser()" type="submit" class="btn btn-success" [disabled]="!loginUserForm.form.valid">Login</button>
     </form>
   </div>
-</section>
+</div>

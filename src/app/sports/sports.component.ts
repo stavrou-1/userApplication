@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
+import { FETCH_TEAM } from '../store/actions/appActions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class SportsComponent implements OnInit {
 
   sports: Object;
+  stateMessage = 'Loading...';
 
   constructor(private data: DataService,
               private _router: Router) {
@@ -19,7 +21,12 @@ export class SportsComponent implements OnInit {
 
   ngOnInit() {
     this.data.getSports().subscribe(
-      data => this.sports = data,
+      data => {
+        this.data.updateTeamState({
+          action: FETCH_TEAM,
+          payload: data
+        })
+      },
       err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
@@ -33,6 +40,15 @@ export class SportsComponent implements OnInit {
         }
       }
     );
+    this.loadTeamStates();
+  }
+
+  loadTeamStates() {
+    this.data.getTeamState().subscribe(state => {
+      console.log(state);
+      this.sports = state.team;
+      //state.createTeamReducer()
+    })
   }
 
 }

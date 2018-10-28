@@ -4,7 +4,7 @@
 
   <div id="content">
 
-    <aside class="addTeam">
+    <aside class="addTeam" *ngIf="_AuthService.loggedIn()">
       <a routerLink="addsport">
         <i class="material-icons">add</i>
       </a>
