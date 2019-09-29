@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { PostTeam } from './PostTeam';
-import { TeamDetails } from './TeamDetails';
+import { PostTeam } from '../interfaces/PostTeam';
+import { TeamDetails } from '../interfaces/TeamDetails';
 import { Store } from '@ngrx/store';
 
 @Injectable({

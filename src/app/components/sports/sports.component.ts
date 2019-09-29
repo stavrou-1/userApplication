@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
-import { FETCH_TEAM } from '../store/actions/appActions';
+import { FETCH_TEAM } from '../../store/actions/appActions';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 

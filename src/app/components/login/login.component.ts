@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
-import { DataService } from '../data.service';
-import { ACTION_LOGOUT } from '../store/actions/appActions';
+import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
+import { ACTION_LOGOUT } from '../../store/actions/appActions';
 
 @Component({
   selector: 'app-login',

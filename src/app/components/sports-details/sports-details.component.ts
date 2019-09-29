@@ -1,8 +1,8 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-sports-details',
@@ -39,9 +39,11 @@ export class SportsDetailsComponent implements OnInit {
   deleteTeam() {
     this.route.params.subscribe(params => {
       const theId = params.id;
+      const confirmValue = prompt("Are you sure you want to deleted this entry? Type Yes to continue.");
+
+      let doesProceed = false;
+
       console.log(theId);
-      let doesProceed;
-      let confirmValue = prompt("Are you sure you want to deleted this entry? Type Yes to continue.");
       if (!confirmValue) {
         doesProceed = false;
         return;

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Team } from '../team';
-import { DataService } from '../data.service';
+import { Team } from '../../team';
+import { DataService } from '../../services/data.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
