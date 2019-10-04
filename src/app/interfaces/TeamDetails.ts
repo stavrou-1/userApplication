@@ -1,12 +1,8 @@
 export interface TeamDetails {
-  players: Array<String>;
-  state: Array<String>;
   _id: String;
   team: String;
+  city: String,
+  championships: string,
+  date: string,
   __v: Number;
-  history: String;
-  city: String;
-  stateAbbr: String;
-  arena: String;
-  Created_date: String;
 }

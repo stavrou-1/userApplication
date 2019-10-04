@@ -1,4 +1,4 @@
- <form [formGroup]="teamForm" (ngSubmit)="updateTeam()">
+ <form [formGroup]="teamForm" (ngSubmit)="updateTeam(teamForm)">
   <div formArrayName="playersDetailsForm">
     <div *ngFor="let player of teamForm.get('playersDetailsForm').controls; let i = index">
       <div [formGroupName]="i">
@@ -9,6 +9,9 @@
           <li class="inputQuestion">
             <label for="team">Team:</label>
             <input type="text" formControlName="team" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.team.valid" class="inlineError">
+              Required Team
+            </div>
           </li>
 
           <li class="inputQuestion">
@@ -18,42 +21,14 @@
               Required City
             </div>
           </li>
-
-          <li class="inputQuestion">
-            <label for="stateAbbr">State abbreviation:</label>
-            <input type="text" formControlName="stateAbbr" />
-            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.stateAbbr.valid" class="inlineError">
-              Required state abbreviation
-            </div>
-          </li>
           
           <li class="inputQuestion">
-            <label for="history">History:</label>
-            <input type="text" formControlName="history" />
-            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.history.valid" class="inlineError">
-              Required History
+            <label for="championships">championships:</label>
+            <input type="text" formControlName="championships" />
+            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.championships.valid" class="inlineError">
+              Required championships
             </div>
           </li>
-
-          {{error}}
-
-          <li class="inputQuestion">
-              <label for="state">Team Status:</label>
-              <input type="text" formControlName="state" />
-              <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.state.valid" class="inlineError">
-                Required Team Status
-              </div>
-            </li>
-
-          <li class="inputQuestion">
-            <label for="arena">Arena:</label>
-            <input type="text" formControlName="arena" />
-            <div [hidden]="teamForm.controls.playersDetailsForm.controls[i].controls.arena.valid" class="inlineError">
-              Required Arena
-            </div>
-          </li>
-
-          <h2>Players:</h2>
 
           <!-- Nested Players Array -->
           <div formArrayName="players">
@@ -79,8 +54,8 @@
                 </div>
               </div>
             </div>
-          <li>
-            <button type="submit" [disabled]="!teamForm.valid" class="editTeamsBtn">Submit Changes</button>
+          <li class="noPad">
+            <button type="submit" class="editTeamsBtn">Submit Changes</button>
           </li>
         </ul>
       </div>

@@ -1,7 +1,5 @@
 <div class="container" [hidden]="submitted">
     <h1>{{pageTitle}}</h1>
-
-    {{diagnostic}}
     <form #teamForm="ngForm" (ngSubmit)="onSubmit(teamForm)">
       <div class="form-group">
         <label for="team">Team</label>
@@ -19,26 +17,6 @@
            </div>
            <div *ngIf="team.errors.minlength">
              Team must be at least 4 characters long.
-           </div>
-         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="history">History</label>
-        <input type="text" class="form-control" id="history"
-               required
-               [(ngModel)]="model.history" name="history"
-               #history="ngModel"
-               minlength="10" placeholder="A short description on the team's history.">
-
-         <div *ngIf="history.invalid && (history.dirty || history.touched)"
-             class="alert alert-danger">
-
-           <div *ngIf="history.errors.required">
-             History is required.
-           </div>
-           <div *ngIf="history.errors.minlength">
-             History must be at least 10 characters long.
            </div>
          </div>
       </div>
@@ -64,41 +42,21 @@
       </div>
 
       <div class="form-group">
-        <label for="stateAbbr">State Abbreviation</label>
-        <input type="text" class="form-control" id="stateAbbr"
+        <label for="championships">Championships</label>
+        <input type="text" class="form-control" id="championships"
                required
-               [(ngModel)]="model.stateAbbr" name="stateAbbr"
-               #stateAbbr="ngModel"
+               [(ngModel)]="model.championships" name="championships"
+               #championships="ngModel"
                minlength="2" placeholder="MN">
 
-         <div *ngIf="stateAbbr.invalid && (stateAbbr.dirty || stateAbbr.touched)"
+         <div *ngIf="championships.invalid && (championships.dirty || championships.touched)"
              class="alert alert-danger">
 
-           <div *ngIf="stateAbbr.errors.required">
-             StateAbbr is required.
+           <div *ngIf="championships.errors.required">
+             Championships is required.
            </div>
-           <div *ngIf="stateAbbr.errors.minlength">
-             StateAbbr must be at least 2 characters long.
-           </div>
-         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="arena">Arena</label>
-        <input type="text" class="form-control" id="arena"
-               required
-               [(ngModel)]="model.arena" name="arena"
-               #arena="ngModel"
-               minlength="2" placeholder="Target Center">
-
-         <div *ngIf="arena.invalid && (arena.dirty || arena.touched)"
-             class="alert alert-danger">
-
-           <div *ngIf="arena.errors.required">
-             Arena is required.
-           </div>
-           <div *ngIf="arena.errors.minlength">
-             Arena must be at least 2 characters long.
+           <div *ngIf="championships.errors.minlength">
+             Championships must be at least 2 characters long.
            </div>
          </div>
       </div>
@@ -115,20 +73,12 @@
     <div class="col-xs-9  pull-left">{{ model.team }}</div>
   </div>
   <div class="row">
-    <div class="col-xs-3">History</div>
-    <div class="col-xs-9  pull-left">{{ model.history }}</div>
-  </div>
-  <div class="row">
     <div class="col-xs-3">City</div>
-    <div class="col-xs-9 pull-left">{{ model.city }}</div>
+    <div class="col-xs-9  pull-left">{{ model.city }}</div>
   </div>
   <div class="row">
-    <div class="col-xs-3">StateAbbr</div>
-    <div class="col-xs-9 pull-left">{{ model.stateAbbr }}</div>
-  </div>
-  <div class="row">
-    <div class="col-xs-3">Arena</div>
-    <div class="col-xs-9 pull-left">{{ model.arena }}</div>
+    <div class="col-xs-3">Championships</div>
+    <div class="col-xs-9 pull-left">{{ model.championships }}</div>
   </div>
   <br>
   <button class="btn btn-primary" (click)="submitted=false">Edit</button>

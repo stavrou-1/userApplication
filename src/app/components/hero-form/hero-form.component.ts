@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Team } from '../../team';
 import { DataService } from '../../services/data.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-form',
@@ -10,21 +11,27 @@ import { NgForm } from '@angular/forms';
 })
 export class HeroFormComponent {
 
-  powers = ['Super Sonic Speeds', 'Genius Problem Solving', 'Weather Changer', 'Immortal Being'];
+  powers: object = ['Super Sonic Speeds', 'Genius Problem Solving', 'Weather Changer', 'Immortal Being'];
+  model: object = new Team(18, '', '', '');
+  submitted: boolean = false;
+  pageTitle: string = 'Add a Team';
 
-  model = new Team(18, '', '', '', '', '');
-
-  submitted = false;
-
-  pageTitle = 'Add a Team';
-
-  constructor(public data: DataService) {
-
-  }
+  constructor(private data: DataService, private _router: Router) { }
 
   onSubmit(teamForm: NgForm) {
     if (teamForm.valid) {
-      this.data.createSportsPost(teamForm.value).subscribe(data => console.log(data));
+      this.data.createSportsPost(teamForm.value)
+        .subscribe(
+          (data) => {
+            console.log(data);
+            if (data) {
+              this._router.navigate(['/sports']);
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
     }
   }
 
@@ -33,7 +40,7 @@ export class HeroFormComponent {
   }
 
   newTeam() {
-    this.model = new Team(42, '', '', '', '', '');
+    this.model = new Team(42, '', '', '');
   }
 
 

@@ -4,42 +4,48 @@ import { PostTeam } from '../interfaces/PostTeam';
 import { TeamDetails } from '../interfaces/TeamDetails';
 import { Store } from '@ngrx/store';
 
+interface DeleteTeam {
+  _id?: String
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
 
   HTTP_OPTIONS = {
     headers: new HttpHeaders({
-      'Content-Type': 'application-json'
+      'Content-Type': 'application/json'
     })
   }
 
-  readonly ROOT_URL = 'http://todolistapi2.herokuapp.com';
-  readonly PLACEHOLDER_URL = 'https://jsonplaceholder.typicode.com';
+  readonly ROOT_URL: string = "http://localhost:3000/api";
+  readonly PLACEHOLDER_URL: string = 'https://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient,
               private store: Store<any>) {
   }
 
   getSports = () => {
-    return this.http.get<TeamDetails>(this.ROOT_URL + '/sports');
+    return this.http.get<TeamDetails>(this.ROOT_URL + '/team', { 
+      headers: this.HTTP_OPTIONS.headers });
   }
 
   createSportsPost = (jsonObject: Object) => {
-    return this.http.post<PostTeam>(this.ROOT_URL + '/sports', jsonObject);
+    return this.http.post<PostTeam>(this.ROOT_URL + '/team', jsonObject);
   }
 
-  updateSportsPost = (jsonObject: Object, playerId) => {
-    return this.http.put(this.ROOT_URL + '/sports/' + playerId, jsonObject);
+  updateSportsPost = (jsonObject: Object, playerId: string) => {
+    return this.http.patch<PostTeam>(this.ROOT_URL + '/team/' + playerId, jsonObject);
   }
 
-  deleteSport = (playerId) => {
-    return this.http.delete(this.ROOT_URL + '/sports/' + playerId);
+  deleteSport = (playerId: string) => {
+    return this.http.delete<DeleteTeam>(this.ROOT_URL + '/team/' + playerId);
   }
 
   getSportsDetails = (sportsId) => {
-    return this.http.get<TeamDetails>(this.ROOT_URL + '/sports/' + sportsId);
+    return this.http.get<TeamDetails>(this.ROOT_URL + '/team/' + sportsId);
   }
 
   getUsers = () => {

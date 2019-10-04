@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { DataService } from '../../services/data.service';
-import { ACTION_LOGOUT } from '../../store/actions/appActions';
+import { ACTION_LOGIN } from '../../store/actions/appActions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +11,34 @@ import { ACTION_LOGOUT } from '../../store/actions/appActions';
 })
 export class LoginComponent implements OnInit {
 
-  loginUserData = {};
+  loginUserData: object = {};
 
   constructor(private _auth: AuthService, 
-              private _router: Router) { }
+              private _router: Router,
+              private store: Store<any>) { }
 
   ngOnInit() {
   }
 
   loginUser() {
-    return this._auth.loginUser(this.loginUserData)
+    const serializedData = JSON.stringify(this.loginUserData);
+    return this._auth.loginUser(serializedData)
       .subscribe(
-        res => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          this._router.navigate(['/sports']);
+        (res: any) => {
+          if (res) {
+            this.store.dispatch({
+              type: ACTION_LOGIN,
+              payload: res.name
+            });
+            localStorage.setItem('token', JSON.stringify(res.token));
+            this._router.navigate(['/sports']);
+          }
         },
-        err => console.log(err)
+        (err: any) => {
+          if (err) {
+            console.log(err.error)
+          }
+        }
       );
   }
 

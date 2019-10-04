@@ -40,25 +40,23 @@ export class SportsDetailsComponent implements OnInit {
     this.route.params.subscribe(params => {
       const theId = params.id;
       const confirmValue = prompt("Are you sure you want to deleted this entry? Type Yes to continue.");
-
       let doesProceed = false;
 
-      console.log(theId);
-      if (!confirmValue) {
-        doesProceed = false;
-        return;
-      } else if (confirmValue === 'yes' || confirmValue === 'Yes') {
+      if (!confirmValue) return;
+      
+      else if (confirmValue === 'yes' || confirmValue === 'Yes') {
         doesProceed = true;
       }
       if (doesProceed) {
         this.data.deleteSport(theId)
-        .subscribe(res => {
-          console.log(res + ' was deleted!');
-          this._router.navigate(['/sports']);
-        },
-        err => {
-          console.log(err + ' occurred. Failed to delete object.');
-        });
+        .subscribe(
+          res => {
+            console.log(res + ' was deleted!');
+            this._router.navigate(['/sports']);
+          },
+          err => {
+            console.log(err + ' occurred. Failed to delete object.');
+          });
       }
     })
   }

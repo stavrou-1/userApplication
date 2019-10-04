@@ -23,7 +23,7 @@ export function createTeamReducer(state = initialState, action): createTeamState
         case CREATE_TEAM:
             return {
                 ...state,
-                team: 'pineapples'
+                team: action.payload
             };
         default:
             return state;

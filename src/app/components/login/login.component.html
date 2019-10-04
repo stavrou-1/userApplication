@@ -14,7 +14,8 @@
                required [(ngModel)]="loginUserData.password" name="password">
       </div>
   
-      <button (click)="loginUser()" type="submit" class="btn btn-success" [disabled]="!loginUserForm.form.valid">Login</button>
+      <button (click)="loginUser()" type="submit" class="btn btn-success" 
+        [disabled]="!loginUserForm.form.valid">Login</button>
     </form>
   </div>
 </div>

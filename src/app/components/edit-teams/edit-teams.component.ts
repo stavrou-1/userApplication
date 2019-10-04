@@ -39,6 +39,7 @@ export class EditTeamsComponent implements OnInit {
     this.data.getSportsDetails(this.teamId)
       .subscribe(data => {
         const container = [];
+        console.log(data)
         this.playersObject = data;
         container.push(this.playersObject);
         const items = this.teamForm.get('playersDetailsForm') as FormArray;
@@ -47,12 +48,9 @@ export class EditTeamsComponent implements OnInit {
           (items).push(this.fb.group({
             _id: [element._id],
             team: [element.team, Validators.required],
-            history: [element.history, Validators.required],
-            stateAbbr: [element.stateAbbr, Validators.required],
-            state: [element.state],
+            championships: [element.championships, Validators.required],
             __v: [0],
             city: [element.city, Validators.required],
-            arena: [element.arena, Validators.required],
             players: this.setProjects(element)
           }));
         });
@@ -76,12 +74,17 @@ export class EditTeamsComponent implements OnInit {
     return false;
   }
 
+  poopTest = () => {
+    console.log("I pooped!");
+  }
+
   updateTeam(): void {
-    console.warn(JSON.stringify(this.teamForm.value.playersDetailsForm[0],null,2));
+    // console.log('submitted')
+    // console.warn(JSON.stringify(this.teamForm.value.playersDetailsForm[0],null,2));
     const result = this.teamForm.value.playersDetailsForm[0];
     this.data.updateSportsPost(result, result._id)
       .subscribe(res => {
-         console.log('Sucesssful Update! ,' + res )
+         console.log('Sucesssful Update! ,' + res);
          this._router.navigate(['/sports/' + result._id]);
       });
   }

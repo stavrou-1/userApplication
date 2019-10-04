@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +31,6 @@ import { ShadowDirective } from './directives/shadow.directive';
 import { SelectedColorDirective } from './directives/selected-color.directive';
 import { ExponentialPipe } from './pipes/exponential.pipe';
 // import { bypassSanitizationTrustStyle } from '@angular/core/src/sanitization/bypass';
-
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 
@@ -66,8 +63,6 @@ import { reducers } from './store/reducers';
     AppRoutingModule,
     StoreModule.forRoot(reducers, {}),
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
     FormsModule,
     ReactiveFormsModule
   ],

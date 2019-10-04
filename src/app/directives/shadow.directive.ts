@@ -1,7 +1,7 @@
 import {
-        Directive, HostListener, 
-        ElementRef, Input, 
-        Renderer2, OnInit } from '@angular/core';
+  Directive, HostListener, 
+  ElementRef, Input, 
+  Renderer2, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appShadow]'

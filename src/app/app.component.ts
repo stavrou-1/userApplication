@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -11,10 +10,5 @@ export class AppComponent {
   courses: any[];
   title: string;
   greeting: string;
-  constructor(private database: AngularFireDatabase,
-              private _AuthService: AuthService) { }
-
-  OnInit() {
-    
-  }
+  constructor(private _AuthService: AuthService) { }
 }

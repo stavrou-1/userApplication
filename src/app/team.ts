@@ -3,8 +3,6 @@ export class Team {
       public id: number,
       public team: string,
       public city: string,
-      public stateAbbr: string,
-      public arena: string,
-      public history?: string
+      public championships: string
   ){}
 }
